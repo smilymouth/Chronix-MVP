@@ -39,7 +39,7 @@ Clone the repository and install all required dependencies:
 git clone https://github.com/smilymouth/Chronix-MVP.git
 cd Chronix-MVP
 pip install -r requirements.txt
-python Chronix_MVP.py
+python Chronix.py
 If requirements.txt is missing, install manually:
 
 bash
