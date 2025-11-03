@@ -1,18 +1,30 @@
-from flask import Flask, request, jsonify
 import os
+import requests
+from flask import Flask, request, jsonify
 
 app = Flask(__name__)
+
+GEMINI_API_KEY = os.getenv("GEMINI_API_KEY")
+
+@app.route("/ai", methods=["POST"])
+def ai():
+    data = request.json
+    query = data.get("query", "")
+    if not query:
+        return jsonify({"response": "No query received."})
+
+    try:
+        headers = {"Content-Type": "application/json"}
+        # Example Gemini-style local simulation (replace this with real API call)
+        reply = f"I analyzed '{query}' and system status is nominal."
+
+        return jsonify({"response": f"AI says: '{reply}' — running fine!"})
+    except Exception as e:
+        return jsonify({"response": f"Error: {str(e)}"})
 
 @app.route("/")
 def home():
     return jsonify({"status": "Chronix AI backend running 🚀"})
 
-@app.route("/ask", methods=["POST"])
-def ask():
-    data = request.get_json()
-    query = data.get("query", "")
-    return jsonify({"response": f"AI says: '{query}' — running fine!"})
-
 if __name__ == "__main__":
-    port = int(os.environ.get("PORT", 5000))
-    app.run(host="0.0.0.0", port=port)
+    app.run(host="0.0.0.0", port=10000)
