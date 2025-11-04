@@ -128,7 +128,7 @@ class DashboardPage(QWidget):
         root = QVBoxLayout(self)
 
         header = QHBoxLayout()
-        title = QLabel("CHRONIX v4 PRO")
+        title = QLabel("CHRONIX - MVP")
         title.setObjectName("Title")
         header.addWidget(title)
         header.addStretch(1)
